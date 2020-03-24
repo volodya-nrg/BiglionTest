@@ -1,0 +1,102 @@
+# в общем что-то накидал тут...
+openapi: "3.0.0"
+info:
+    title: Staff
+    version: 1.0.0
+paths:
+    /:
+        get:
+            operationId: getIndex
+            summary: отображение главной страницы
+            responses:
+                '200':
+                    description: показывает html
+    /api/v1/staffs:
+        get:
+            operationId: getAll
+            summary: показывает все item-ы
+            parameters:
+                -   name: filter
+                    in: query
+                    required: false
+                    schema:
+                        type: string
+            responses:
+                '200':
+                    description: вывод списка item-ов
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        name:
+                                            type: string
+                                        id:
+                                            type: integer
+                                            format: int32
+                                            minimum: 1
+        post:
+            operationId: createOne
+            summary: создает одну запись (item)
+            parameters:
+                -   name: name
+                    in: query
+                    required: true
+                    description: имя item-а
+                    schema:
+                        type: string
+                        example: Владимир
+            responses:
+                '200':
+                    description: успешно добавился item в БД
+    /api/v1/staffs/{id}:
+        parameters:
+            -   name: id
+                in: path
+                required: true
+                description: id
+                schema:
+                    type: integer
+                    example: 1
+        get:
+            operationId: getOne
+            summary: показывает информацию одного item-а
+            responses:
+                '200':
+                    description: показывает св-ва item-а
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    name:
+                                        type: string
+                                    id:
+                                        type: integer
+                                        format: int32
+                                        minimum: 1
+        put:
+            operationId: updateOne
+            summary: обновляет данные у конкретного item-а
+            responses:
+                '200':
+                    description: данные успешно изменены
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    name:
+                                        type: string
+                                    id:
+                                        type: integer
+                                        format: int32
+                                        minimum: 1
+        delete:
+            operationId: deleteOne
+            summary: удаляет один item
+            responses:
+                '204':
+                    description: результат выполнен успешно, ответа нет.

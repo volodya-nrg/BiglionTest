@@ -1,0 +1,2 @@
+[Sun Mar 01 01:16:53.171727 2020] [php7:warn] [pid 901] [client 127.0.0.1:49518] PHP Warning:  require(/Volumes/D/localhost/biglion/vendor/autoload.php): failed to open stream: No such file or directory in /Volumes/D/localhost/biglion/config/bootstrap.php on line 5
+[Sun Mar 01 01:16:53.172232 2020] [php7:error] [pid 901] [client 127.0.0.1:49518] PHP Fatal error:  require(): Failed opening required '/Volumes/D/localhost/biglion/vendor/autoload.php' (include_path='.:') in /Volumes/D/localhost/biglion/config/bootstrap.php on line 5

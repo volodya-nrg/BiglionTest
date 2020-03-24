@@ -1,0 +1,38 @@
+# https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes
+version: "3.3"
+services:
+    #    mysql:
+    #        image: mysql:5.7
+    #        hostname: mysql
+    #        environment:
+    #            MYSQL_DATABASE: mydbname
+    #            MYSQL_USER: root
+    #            MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    #        ports:
+    #            - "3306:3306"
+    php-fpm:
+        image: webdevops/php-dev:7.3
+        hostname: php-fpm
+        volumes:
+            - "./:/app"
+        working_dir: "/app"
+    nginx:
+        image: webdevops/nginx
+        hostname: nginx
+        environment:
+            WEB_DOCUMENT_ROOT: /app/public
+            WEB_DOCUMENT_INDEX: index.php
+            WEB_PHP_SOCKET: php-fpm:9000
+        ports:
+            - "80:80"
+        volumes:
+            - "./:/app"
+        depends_on:
+            - php-fpm
+    composer:
+        restart: "no"
+        image: composer:1.8.5
+        command: install --ignore-platform-reqs
+        working_dir: /app
+        volumes:
+            - "./:/app"

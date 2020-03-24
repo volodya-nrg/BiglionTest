@@ -1,0 +1,35 @@
+index:
+    path: /
+    controller: App\Controller\StaffsController::index
+    methods:    GET
+
+api_v1_staffs_get_all:
+    path:       /api/v1/staffs
+    controller: App\Controller\StaffsController::getAll
+    methods:    GET
+
+api_v1_staffs_get_one:
+    path:       /api/v1/staffs/{id}
+    controller: App\Controller\StaffsController::getOne
+    methods:    GET
+    requirements:
+        id: '\d+'
+
+api_v1_staffs_post:
+    path:       /api/v1/staffs
+    controller: App\Controller\StaffsController::create
+    methods:    POST
+
+api_v1_staffs_put:
+    path:       /api/v1/staffs/{id}
+    controller: App\Controller\StaffsController::update
+    methods:    PUT
+    requirements:
+        id: '\d+'
+
+api_v1_staffs_delete:
+    path:       /api/v1/staffs/{id}
+    controller: App\Controller\StaffsController::delete
+    methods:    DELETE
+    requirements:
+        id: '\d+'
